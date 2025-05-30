@@ -1,0 +1,151 @@
+import React from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { PhoneCall, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function App() {
+  return (
+    <div className="font-sans antialiased scroll-smooth">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg z-50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+          <a href="#home" className="text-xl font-bold">ShinePro Detailing</a>
+          <div className="space-x-6 hidden md:flex">
+            <a href="#services" className="hover:text-blue-600">Services</a>
+            <a href="#pricing" className="hover:text-blue-600">Pricing</a>
+            <a href="#about" className="hover:text-blue-600">About</a>
+            <a href="#contact" className="hover:text-blue-600">Contact</a>
+          </div>
+          <Button asChild className="md:hidden">
+            <a href="#contact">Book Now</a>
+          </Button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-24 pb-32 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
+          <motion.h1
+            className="text-4xl md:text-6xl font-extrabold mb-6"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Professional Auto Detailing<br className="hidden md:block" /> Delivered to Your Doorstep
+          </motion.h1>
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            We bring the shine back to your ride—inside and out. Mobile service across San Diego County.
+          </p>
+          <Button size="lg" asChild>
+            <a href="#contact">Get a Free Quote</a>
+          </Button>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
+          <div className="grid gap-8 md:grid-cols-3">
+            {[
+              {
+                title: "Exterior Wash & Wax",
+                desc: "Hand wash, clay bar treatment, and premium wax for a lasting shine.",
+              },
+              {
+                title: "Interior Deep Clean",
+                desc: "Steam clean carpets, upholstery shampoo, and leather conditioning.",
+              },
+              {
+                title: "Full Detail Package",
+                desc: "Combine interior and exterior services for maximum value.",
+              },
+            ].map((svc) => (
+              <motion.div
+                key={svc.title}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <Card className="rounded-2xl shadow-lg hover:shadow-xl transition">
+                  <CardHeader className="text-xl font-semibold text-center px-6 pt-6">
+                    {svc.title}
+                  </CardHeader>
+                  <CardContent className="px-6 pb-8 text-center text-gray-600">
+                    {svc.desc}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Transparent Pricing</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { tier: "Sedan", price: "$120", features: ["Exterior Wash & Wax", "Interior Vacuum", "Window Clean"] },
+              { tier: "SUV/Truck", price: "$150", features: ["Everything in Sedan", "Tire Dressing", "Trim Shine"] },
+              { tier: "Full Detail", price: "$220", features: ["Complete Interior", "Clay Bar & Wax", "Engine Bay Clean"] },
+            ].map((plan) => (
+              <Card key={plan.tier} className="rounded-2xl shadow-lg hover:shadow-xl transition">
+                <CardHeader className="text-center text-2xl font-semibold pt-6 pb-0">
+                  {plan.tier}
+                </CardHeader>
+                <CardContent className="p-6 flex flex-col items-center">
+                  <p className="text-4xl font-bold mb-4">{plan.price}</p>
+                  <ul className="space-y-2 mb-6 text-gray-600 text-sm text-left">
+                    {plan.features.map((f) => (
+                      <li key={f}>• {f}</li>
+                    ))}
+                  </ul>
+                  <Button asChild>
+                    <a href="#contact">Book Now</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">About Us</h2>
+          <p className="text-gray-700 leading-relaxed">
+            ShinePro Detailing is a locally owned mobile detailing company founded by car enthusiasts.
+            Our mission is simple: provide dealership-quality results with concierge-level convenience.
+            We use eco‑friendly products and deionized water to protect both your vehicle and the environment.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Get in Touch</h2>
+          <p className="mb-8 text-gray-700">Ready to schedule or have a question? Reach out and we'll reply within one business day.</p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <Button size="lg" variant="outline" asChild className="flex items-center gap-2">
+              <a href="tel:+16195551234"><PhoneCall className="w-5 h-5" /> (619) 555‑1234</a>
+            </Button>
+            <Button size="lg" asChild className="flex items-center gap-2">
+              <a href="mailto:info@shineprodetail.com"><Mail className="w-5 h-5" /> info@shineprodetail.com</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        © {new Date().getFullYear()} ShinePro Detailing. All rights reserved.
+      </footer>
+    </div>
+  );
+}
+
